@@ -1,0 +1,7 @@
+parameters:
+#    mila_short_links.example.class: Mila\ShortLinksBundle\Example
+
+services:
+#    mila_short_links.example:
+#        class: %mila_short_links.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

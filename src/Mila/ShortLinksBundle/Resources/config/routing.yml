@@ -1,0 +1,3 @@
+mila_short_links_homepage:
+    pattern:  /
+    defaults: { _controller: MilaShortLinksBundle:Default:index }

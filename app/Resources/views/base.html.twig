@@ -1,0 +1,377 @@
+{{ include('FunrideFrontendBundle:Default:header.html.twig') }}
+    {% block top_navbar %}
+        <div id="slide_top_navbar">
+            <div class="center-wrapper">
+                <a class="zaloguj-sie" href="">Zaloguj się</a>
+            </div>
+        </div>
+    {% endblock %}
+    <div class="main-wrapper center-wrapper">
+        {% block sidebaners %}
+            <div class="baner-left"></div>
+            <div class="baner-right"></div>
+        {% endblock %}
+        {% block top_wrapper %}
+            <div class="top-wrapper">
+                <div class="logo"><a href="home.html"></a></div>
+                <div class="baner-top"></div>
+            </div>
+        {% endblock %}
+        {% block top_middle_navbar %}
+            <div id="top_navbar" class="clearfix">
+                <a class="home-ico" href="home.html"></a>
+                <ul>
+                    <li><a href="">Ranking</a></li>
+                    <li><a href="">Nagrody</a></li>
+                    <li><a href="">Instrukcje</a></li>
+                    <li><a href="">Wykaz tras</a></li>
+                    <li><a href="">Galeria</a></li>
+                    <li><a href="">Finał</a></li>
+                    <li><a href="">Partnerzy</a></li>
+                    <li><a href="">Regulamin</a></li>
+                    <li><a href="">Kontakt</a></li>
+                </ul>
+            </div>
+        {% endblock %}
+
+        {% block slider %}
+        <div id="slider">
+            <div class="flexslider">
+                <ul class="slides">
+                    <li>
+                        <img src="{{ asset('bundles/funride/front/images/slider/slider1.jpg') }}" />
+                        <div class="caption-wrapper">
+                            <p class="flex-caption">
+                                <span>Przeżyj swoją przygodę 1</span>
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="{{ asset('bundles/funride/front/images/slider/slider2.jpg') }}" />
+                        <div class="caption-wrapper">
+                            <p class="flex-caption">
+                                <span><strong>Przeżyj</strong> swoją przygodę 2</span>
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="{{ asset('bundles/funride/front/images/slider/slider3.jpg') }}" />
+                        <div class="caption-wrapper">
+                            <p class="flex-caption">
+                                <span>Przeżyj swoją przygodę 3</span>
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="{{ asset('bundles/funride/front/images/slider/slider1.jpg') }}" />
+                        <div class="caption-wrapper">
+                            <p class="flex-caption">
+                                <span>Przeżyj swoją przygodę 4</span>
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="{{ asset('bundles/funride/front/images/slider/slider2.jpg') }}" />
+                        <div class="caption-wrapper">
+                            <p class="flex-caption">
+                                <span><strong>Przeżyj</strong> swoją przygodę 5</span>
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="{{ asset('bundles/funride/front/images/slider/slider3.jpg') }}" />
+                        <div class="caption-wrapper">
+                            <p class="flex-caption">
+                                <span>Przeżyj swoją przygodę 6</span>
+                            </p>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="flex-control-nav">
+                    <li>
+                        <a class="rower">Rower</a>
+                    </li>
+                    <li>
+                        <a class="samochod">Samochód osobowy</a>
+                    </li>
+                    <li>
+                        <a class="cztery-na-cztery">4x4</a>
+                    </li>
+                    <li>
+                        <a class="motor">Motocykl</a>
+                    </li>
+                    <li>
+                        <a class="cross">Cross</a>
+                    </li>
+                    <li>
+                        <a class="quad">Quad</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        {% endblock %}
+
+        {% block news %}
+
+            <div id="news" class="clearfix">
+                <ul id="menu_news" class="menu">
+                    <li class="active"><a href="#aktualnosci">aktualności</a><span class="ending"></span></li>
+                    <li><a href="#galeria">galeria</a><span class="ending"></span></li>
+                    <li><a href="#video">video</a><span class="ending"></span></li>
+                    <li><a href="#porady">porady</a><span class="ending"></span></li>
+                </ul>
+
+                <div id="aktualnosci" class="content">
+                    <div class="content-wrapper tab-three-columns">
+                        <div class="column">
+                            <h2>Lorem Ipsum jest tekstem stosowanym jako przykładowy wypełniacz tutułu</h2>
+                            <cite>dodano 1 lipca 2013</cite>
+                            <p>
+                                Lorem Ipsum jest tekstem stosowanym jako przykładowy wypełniacz w przemyśle poligraficznym.
+                                Został po raz pierwszy użyty w XV w. przez nieznanego drukarza do wypełnienia tekstem próbnej
+                                książki. Pięć wieków później zaczął być używany przemyśle elektronicznym, pozostając
+                                praktycznie niezmienionym...
+                            </p>
+                            <a class="wiecej" href="">więcej +</a>
+                        </div>
+                        <div class="column">
+                            <h2>Lorem Ipsum jest tekstem stosowanym jako przykładowy wypełniacz tutułu</h2>
+                            <cite>dodano 1 lipca 2013</cite>
+                            <p>
+                                Lorem Ipsum jest tekstem stosowanym jako przykładowy wypełniacz w przemyśle poligraficznym.
+                                Został po raz pierwszy użyty w XV w. przez nieznanego drukarza do wypełnienia tekstem próbnej
+                                książki. Pięć wieków później zaczął być używany przemyśle elektronicznym, pozostając
+                                praktycznie niezmienionym...
+                            </p>
+                            <a class="wiecej" href="">więcej +</a>
+                        </div>
+                        <div class="column">
+                            <h2>Lorem Ipsum jest tekstem stosowanym jako przykładowy wypełniacz tutułu</h2>
+                            <cite>dodano 1 lipca 2013</cite>
+                            <p>
+                                Lorem Ipsum jest tekstem stosowanym jako przykładowy wypełniacz w przemyśle poligraficznym.
+                                Został po raz pierwszy użyty w XV w. przez nieznanego drukarza do wypełnienia tekstem próbnej
+                                książki. Pięć wieków później zaczął być używany przemyśle elektronicznym, pozostając
+                                praktycznie niezmienionym...
+                            </p>
+                            <a class="wiecej" href="">więcej +</a>
+                        </div>
+                    </div>
+                    <div class="bottom-wrapper">
+                        <ul class="links">
+                            <li><a href="">Pobierz aplikację na Androida</a></li>
+                            <li><a href="">Pobierz aplikację na iOS Apple</a></li>
+                            <li><a href="">Pobierz aplikację na Windows Phone</a></li>
+                        </ul>
+                        <a class="zobacz-wiecej" href="">zobacz wszystkie +</a>
+                    </div>
+                </div>
+                <div id="galeria" class="content">
+                    Tekst w galerii
+                    <div class="bottom-wrapper">
+                        <ul class="links">
+                            <li><a href="">Pobierz aplikację na Androida</a></li>
+                            <li><a href="">Pobierz aplikację na iOS Apple</a></li>
+                            <li><a href="">Pobierz aplikację na Windows Phone</a></li>
+                        </ul>
+                        <a class="zobacz-wiecej" href="">zobacz wszystkie +</a>
+                    </div>
+                </div>
+                <div id="video" class="content">
+                    Tekst w Video
+                    <div class="bottom-wrapper">
+                        <ul class="links">
+                            <li><a href="">Pobierz aplikację na Androida</a></li>
+                            <li><a href="">Pobierz aplikację na iOS Apple</a></li>
+                            <li><a href="">Pobierz aplikację na Windows Phone</a></li>
+                        </ul>
+                        <a class="zobacz-wiecej" href="">zobacz wszystkie +</a>
+                    </div>
+                </div>
+                <div id="porady" class="content">
+                    Tekst w Porady
+                    <div class="bottom-wrapper">
+                        <ul class="links">
+                            <li><a href="">Pobierz aplikację na Androida</a></li>
+                            <li><a href="">Pobierz aplikację na iOS Apple</a></li>
+                            <li><a href="">Pobierz aplikację na Windows Phone</a></li>
+                        </ul>
+                        <a class="zobacz-wiecej" href="">zobacz wszystkie +</a>
+                    </div>
+                </div>
+            </div>
+
+        {% endblock %}
+
+        <div class="middle-wrapper">
+            <div class="left-wrapper">
+                {% block trasy %}
+                    <div id="trasy" class="clearfix">
+                        <ul id="menu_trasy" class="menu">
+                            <li class="active"><a href="#wybierz-trase">wybierz trasę</a><span class="ending"></span></li>
+                            <li><a href="#ostatnio-dodane-trasy">ostatnio dodane trasy</a><span class="ending"></span></li>
+                            <li><a href="#najpopularniejsze-trasy">najpopularniejsze trasy</a><span class="ending"></span></li>
+                        </ul>
+                        <div id="wybierz-trase" class="content">
+                            <div id="funride_map"></div>
+                        </div>
+                        <div id="ostatnio-dodane-trasy" class="content">
+                            ostatnio dodane trasy
+                        </div>
+                        <div id="najpopularniejsze-trasy" class="content">
+                            najpopularniejsze trasy
+                        </div>
+                    </div>
+                {% endblock %}
+            </div>
+            <div class="right-wrapper">
+                {% block search %}
+                    <div id="search" class="clearfix">
+                        <ul id="menu_wyszukiwarka" class="menu">
+                            <li class="active"><a href="#wyszukiwarka">wyszukiwarka</a><span class="ending"></span></li>
+                        </ul>
+                        <div id="wyszukiwarka" class="content">
+                            <form action="" method="post">
+                                <fieldset>
+                                    <input type="text" value="Wpisz miasto">
+                                </fieldset>
+                                <fieldset>
+                                    <div class="select-wrapper">
+                                        <select name="woj">
+                                            <option>Wybierz województwo</option>
+                                            <option>dolnośląskie</option>
+                                            <option>kujawsko-pomorskie</option>
+                                            <option>lubelskie</option>
+                                            <option>lubuskie</option>
+                                            <option>łódzkie</option>
+                                            <option>małopolskie</option>
+                                            <option>mazowieckie</option>
+                                            <option>opolskie</option>
+                                            <option>podkarpackie</option>
+                                            <option>podlaskie</option>
+                                            <option>pomorskie</option>
+                                            <option>śląskie</option>
+                                            <option>świętokrzyskie</option>
+                                            <option>warmińsko-mazurskie</option>
+                                            <option>wielkopolskie</option>
+                                            <option>zachodniopomorskie</option>
+                                        </select>
+                                    </div>
+                                </fieldset>
+                                <fieldset>
+                                    <div class="select-wrapper">
+                                        <select name="srodek_transportu">
+                                            <option>Środek transportu</option>
+                                            <option>Rower</option>
+                                            <option>Samochód osobowy</option>
+                                            <option>4x4</option>
+                                            <option>Motocykl</option>
+                                            <option>Cross</option>
+                                            <option>Quad</option>
+                                        </select>
+                                    </div>
+                                </fieldset>
+                                <p>Pokaż</p>
+                                <fieldset>
+                                    <input type="checkbox" id="input_trasy"><label for="input_trasy" class="input_trasy">Trasy</label>
+                                    <input type="checkbox" id="input_atrakcje"><label for="input_atrakcje" class="input_atrakcje">Atrakcje</label>
+                                </fieldset>
+                                <fieldset>
+                                    <input type="checkbox" id="input_zdjecia"><label for="input_zdjecia" class="input_zdjecia">Zdjęcia</label>
+                                    <input type="checkbox" id="input_noclegi"><label for="input_noclegi" class="input_noclegi">Noclegi</label>
+                                </fieldset>
+
+                                <div class="bottom-wrapper">
+                                    <div class="search-result">Znaleziono 66 tras</div>
+                                    <a class="zobacz-wiecej-mini" href="">pokaż +</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                {% endblock %}
+
+                {% block newsletter %}
+                    <div id="newsletter" class="clearfix">
+                        <h2>Newsletter</h2>
+                        <p>Zapisz się i bądź zawsze na bieżąco!</p>
+                        <div class="newsletter-input-wrapper clearfix">
+                            <input type="text" name="newsletter_email" value="Wpisz swój adres e-mail..." /><input type="submit" value="" />
+                        </div>
+                    </div>
+                {% endblock %}
+
+                {% block baners_right %}
+                    <div id="banners_right">
+                        <ul>
+                            <li class="reklama"></li>
+                            <li class="reklama"></li>
+                            <li class="reklama"></li>
+                            <li class="reklama"></li>
+                            <li class="reklama"></li>
+                            <li class="reklama"></li>
+                        </ul>
+                    </div>
+                {% endblock %}
+            </div>
+        </div>
+
+        {% block bottom_wrapper %}
+            <div id="pozostale_bottom" class="clearfix">
+
+                <ul id="menu_pozostale" class="menu">
+                    <li class="active"><a href="#pozostale">pozostałe</a><span class="ending"></span></li>
+                </ul>
+                <div id="pozostale" class="content">
+                    <div class="informacje">
+                        <h2>Informacje</h2>
+                        <ul>
+                            <li><a href="">Aktualności</a></li>
+                            <li><a href="">Galeria</a></li>
+                            <li><a href="">Ranking</a></li>
+                            <li><a href="">Nagrody</a></li>
+                            <li><a href="">Wykaz tras</a></li>
+                            <li><a href="">Finał</a></li>
+                            <li><a href="">Partnerzy</a></li>
+                            <li><a href="">Regulamin</a></li>
+                        </ul>
+                    </div>
+                    <div class="moje-konto">
+                        <h2>Moje konto</h2>
+                        <ul>
+                            <li><a href="">Zarejestruj się</a></li>
+                            <li><a href="">Zaloguj się</a></li>
+                            <li><a href="">Edytuj profil</a></li>
+                            <li><a href="">Dodaj trasę</a></li>
+                            <li><a href="">Usuń konto</a></li>
+
+                        </ul>
+                    </div>
+                    <div class="pomoc">
+                        <h2>Pomoc</h2>
+                        <ul>
+                            <li><a href="">Instrukcje</a></li>
+                            <li><a href="">Pobierz aplikację na Androida  </a></li>
+                            <li><a href="">Pobierz aplikację na iOS  </a></li>
+                            <li><a href="">Pobierz aplikację na Windows Phone</a></li>
+                            <li><a href="">Polityka prywatności</a></li>
+                            <li><a href="">Mapa serwisu  </a></li>
+                            <li><a href="">Zgłoś problem lub błąd serwisu</a></li>
+                        </ul>
+                    </div>
+                    <div class="kontakt">
+                        <h2>Kontakt</h2>
+                        Actifun Sp. z o.o.<br>
+                        ul. Twoja ulica 5/6<br>
+                        Warszawa 00-000<br>
+                        <br>
+                        <a href="http://www.funride.pl">www.funride.pl</a><br>
+                        <a href="mailto:biuro@funride.pl">biuro@funride.pl</a><br>
+
+                    </div>
+                </div>
+
+            </div>
+        {% endblock %}
+    </div>
+{{ include('FunrideFrontendBundle:Default:footer.html.twig') }}
+

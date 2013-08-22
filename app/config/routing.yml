@@ -1,0 +1,3 @@
+mila_short_links:
+    resource: "@MilaShortLinksBundle/Resources/config/routing.yml"
+    prefix:   /
