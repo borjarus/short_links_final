@@ -1,0 +1,35 @@
+@import "compass/reset";
+
+fieldset{
+  border: 0;
+}
+
+input[type="text"]{
+  padding: 5px 10px;
+  border:solid 1px #aacfe4;
+  width:200px;
+  margin:2px 0 20px 10px;
+}
+
+/* modal box */
+#lean_overlay {
+  position: fixed;
+  z-index: 10000;
+  top: 0px;
+  left: 0px;
+  height:100%;
+  width:100%;
+  background: #000;
+  display: none;
+}
+
+.modal_box {
+  width: 600px;
+  display:none;
+  background: #FFF;
+  padding: 15px 25px;
+  label{
+    min-width: 100px;
+    display: inline-block;
+  }
+}

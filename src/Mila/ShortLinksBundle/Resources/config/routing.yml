@@ -1,3 +1,11 @@
 mila_short_links_homepage:
     pattern:  /
     defaults: { _controller: MilaShortLinksBundle:Default:index }
+
+mila_short_links_login:
+    pattern:  /login
+    defaults: { _controller: MilaShortLinksBundle:Auth:login }
+
+mila_short_links_register:
+    pattern:  /register
+    defaults: { _controller: MilaShortLinksBundle:Auth:register }

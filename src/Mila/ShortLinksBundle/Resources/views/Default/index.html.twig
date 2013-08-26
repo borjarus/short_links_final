@@ -1,1 +1,18 @@
-TEST
+{{ include( 'MilaShortLinksBundle:Default:header.html.twig' ) }}
+<nav id="top_navbar">
+    <ul>
+        <li><a href="{{ url('mila_short_links_login') }}" data-id="login">Login</a></li>
+        <li><a href="{{ url('mila_short_links_register') }}" data-id="register">Register</a></li>
+    </ul>
+</nav>
+<form action="" method="post">
+    <fieldset>
+        <p>Generuj losowy adres:</p>
+        <input type="text" name="url_address" value="wpisz tutaj adres url.."><input type="submit" value="short url!">
+    </fieldset>
+    <fieldset>
+        <p>.. lub wpisz swoj własny: </p>
+        <label>{{ url('mila_short_links_homepage') }}<input type="text" name="custom_url" value="wpisz tutaj własny tekst.."></label>
+    </fieldset>
+</form>
+{{ include( 'MilaShortLinksBundle:Default:footer.html.twig' ) }}
