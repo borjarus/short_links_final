@@ -42,12 +42,13 @@ assetic:
 # Doctrine Configuration
 doctrine:
     dbal:
-        driver:   %database_driver%
-        host:     %database_host%
-        port:     %database_port%
-        dbname:   %database_name%
-        user:     %database_user%
-        password: %database_password%
+        driver:   pdo_sqlite
+        dbname:   short_links
+        user:     root
+        password: null
+        host:     localhost
+        port:     ~
+        path:     "%kernel.root_dir%/data/short_links.sqlite"
         charset:  UTF8
         # if using pdo_sqlite as your database driver, add the path in parameters.yml
         # e.g. database_path: %kernel.root_dir%/data/data.db3
