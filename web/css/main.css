@@ -54,6 +54,12 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   display: block;
 }
 
+/* general */
+body {
+  padding: 25px;
+}
+
+/* general form */
 fieldset {
   border: 0;
 }
@@ -63,6 +69,18 @@ input[type="text"] {
   border: solid 1px #aacfe4;
   width: 200px;
   margin: 2px 0 20px 10px;
+}
+
+/* top navbar */
+#top_navbar ul {
+  width: 200px;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+#top_navbar ul li {
+  display: inline-block;
+  margin-left: 10px;
 }
 
 /* modal box */

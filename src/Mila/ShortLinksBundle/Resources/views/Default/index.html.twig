@@ -1,4 +1,9 @@
 {{ include( 'MilaShortLinksBundle:Default:header.html.twig' ) }}
+{% if msg %}
+    {% for item in msg %}
+        {{ item|raw }}<br>
+    {% endfor %}
+{% endif %}
 <nav id="top_navbar">
     <ul>
         <li><a href="{{ url('mila_short_links_login') }}" data-id="login">Login</a></li>
