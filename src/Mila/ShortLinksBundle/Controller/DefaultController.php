@@ -20,41 +20,41 @@ class DefaultController extends Controller
 
         if ( $this->get('request')->getMethod() == 'POST' ){
             $request = $this->get('request')->request->all();
+            //clean request from default data
+            if ( $request['url_address'] == 'wpisz tutaj adres url..' ) { $request['url_address'] = ''; }
+            if ( $request['custom_url'] == 'wpisz tutaj własny tekst..' ) { $request['custom_url'] = ''; }
+            $base_url = $this->get('router')->generate( 'mila_short_links_homepage', array(), true );
             var_dump($request);
-            if ( $request['custom_url'] == 'wpisz tutaj własny tekst..' || $request['custom_url'] == '' ){
-                if( $request['url_address'] != 'wpisz tutaj adres url..' || $request['url_address'] != ''){
-                    // generate a random string
-                    $generated_string = $this->generateRandomCode();
-
-
+            if ( $request['custom_url'] == '' ){
+                if( $request['url_address'] != ''){
                     $url = $request['url_address'];
-                    $base_url = $this->get('router')->generate( 'mila_short_links_homepage', array(), true );
                     $em = $this->getDoctrine()->getManager();
                     $repository = $em->getRepository('MilaShortLinksBundle:UrlList');
                     $is_URL = $repository->findOneBy( array( 'original_url' => $url ) );
-                    //
                     if ( $is_URL == null ){
                         // check the database if there is already specified generated string
-                        $is_generated_string = $repository->findOneBy( array( 'generated_url' => $generated_string ) );
-                        if ( $is_generated_string == null ){
-                            // if there isnt, add an entry to the database
-                            $url_list = new UrlList();
-                            $url_list->setOriginalUrl( $url );
-                            $url_list->setGeneratedUrl( $base_url.$generated_string );
-                            $url_list->setDateAdded( new DateTime() );
-                            $url_list->setIdUser( 1 );
-
-                            $em = $this->getDoctrine()->getManager();
-                            $em->persist( $url_list );
-                            $em->flush();
-                        } else {
-                            //generuj od nowa i sprawdz jeszcze raz
-                        }
+                        $generated_url = $this->generateAndCheckURL( $base_url );
+                        $this->addURLToDB( $url, $generated_url, 1);
+                        $msg[] = '<p>Wygenerowany link to: <a href="'. $generated_url .'">
+                            '. $generated_url .'</a></p>';
                     } else {
-                        $msg[] = '<p class=>Wygenerowany link to: <a href="'. $is_URL->getGeneratedUrl() .'">
+                        $msg[] = '<p>Wygenerowany link to: <a href="'. $is_URL->getGeneratedUrl() .'">
                             '. $is_URL->getGeneratedUrl() .'</a></p>';
                     }
 
+                } else {
+                    $msg[] = '<p class="error">Proszę o uzupełnienie pola "Generuj losowy adres" lub "wpisz swoj własny"</p>';
+                }
+            } else {
+                if ( $request['url_address'] != '' ){
+                    $checked_url = $this->checkURL( $base_url, $request['custom_url'] );
+                    if ( $checked_url != null ){
+                        $this->addURLToDB( $request['url_address'], $checked_url, 1);
+                    } else {
+                        $checked_url = $base_url.$request['custom_url'];
+                    }
+                    $msg[] = '<p>Wygenerowany link to: <a href="'. $checked_url .'">
+                        '. $checked_url .'</a></p>';
                 } else {
                     $msg[] = '<p class="error">Proszę o uzupełnienie pola "Generuj losowy adres" lub "wpisz swoj własny"</p>';
                 }
@@ -69,21 +69,24 @@ class DefaultController extends Controller
         $base_url = $this->get('router')->generate( 'mila_short_links_homepage', array(), true );
         $url_to_checked = $base_url.$code;
 
-        //var_dump($url_to_checked);
-
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('MilaShortLinksBundle:UrlList');
         $is_URL = $repository->findOneBy( array( 'generated_url' => $url_to_checked ) );
         if ( $is_URL != null ){
-            return new RedirectResponse( $is_URL->getOriginalUrl() );
+            // if there is, redirect to specified address
+            $url_to_redirect = $is_URL->getOriginalUrl();
+            //check if url to redirect started with http:// if not add to it
+            $test = preg_match('/^https?:\/\//', $url_to_redirect);
+            if ( !$test  ){
+                $url_to_redirect = 'http://'.$url_to_redirect;
+            }
+            return new RedirectResponse( $url_to_redirect );
         } else {
+            // if it doesnt move to the homepage and displays error
             $msg[] = '<p class="error">Podany adres: <a href="'. $url_to_checked .'">'. $url_to_checked .'</a>
                 wydaje się być nieprawidłowy</p>';
             return $this->forward( 'MilaShortLinksBundle:Default:index', array( 'args' => $msg ) );
         }
-        // if there is, redirect to specified address
-        // if it doesnt move to the homepage and displays error
-
     }
 
     private  function generateRandomCode( $length = 6 ){
@@ -98,5 +101,42 @@ class DefaultController extends Controller
         }
 
         return $result;
+    }
+
+    private function generateAndCheckURL( $base_url ){
+        $generated_string = $this->generateRandomCode();
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('MilaShortLinksBundle:UrlList');
+        $url_to_check = $base_url.$generated_string;
+        $is_generated_string = $repository->findOneBy( array( 'generated_url' => $url_to_check ) );
+        if ( $is_generated_string != null ){
+            $this->generateAndCheckURL( $base_url );
+        } else {
+            return $url_to_check;
+        }
+    }
+
+    private function checkURL( $base_url, $user_string ){
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('MilaShortLinksBundle:UrlList');
+        $url_to_check = $base_url.$user_string;
+        $is_generated_string = $repository->findOneBy( array( 'generated_url' => $url_to_check ) );
+        if ( $is_generated_string != null ){
+            return null;
+        } else {
+            return $url_to_check;
+        }
+    }
+
+    private function addURLToDB( $orginal_url, $generated_url, $user_id ){
+        $url_list = new UrlList();
+        $url_list->setOriginalUrl( $orginal_url );
+        $url_list->setGeneratedUrl( $generated_url );
+        $url_list->setDateAdded( new DateTime() );
+        $url_list->setIdUser( $user_id );
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist( $url_list );
+        $em->flush();
     }
 }
