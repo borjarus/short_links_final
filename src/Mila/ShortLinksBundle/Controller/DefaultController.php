@@ -81,6 +81,13 @@ class DefaultController extends Controller {
             array( 'msg' => $msg, 'login_text' => $login_text ) );
     }
 
+    /**
+     * This action will redirect to the page defined in the database. If the page does not exist in the database
+     * it redirects to homepage.
+     *
+     * @param string $code text which is used when creating shortlinks
+     * @return RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
     public function redirectAction( $code ){
         // check whether the database entry exist
         $msg = array();
@@ -107,6 +114,12 @@ class DefaultController extends Controller {
         }
     }
 
+    /**
+     * Returns a specified length of random string
+     *
+     * @param int $length length of the generated text
+     * @return string random generated text
+     */
     private  function generateRandomCode( $length = 6 ){
         $valid_characters = 'abcdefghijklmnopqrstuxyvwzABCDEFGHIJKLMNOPQRSTUXYVWZ0123456789-';
         $valid_char_number = strlen( $valid_characters );
@@ -121,6 +134,14 @@ class DefaultController extends Controller {
         return $result;
     }
 
+    /**
+     * This method checks if the generated code already exists in the database.
+     * Code generation is performed in this method. If the generated code is in database this function
+     * is called again until it succeeds
+     *
+     * @param string $base_url url you want to check
+     * @return string return url
+     */
     private function generateAndCheckURL( $base_url ){
         $generated_string = $this->generateRandomCode();
         $em = $this->getDoctrine()->getManager();
@@ -134,6 +155,15 @@ class DefaultController extends Controller {
         }
     }
 
+    /**
+     * This method checks if typed by user code already exists in the database.
+     * If the user code isnt in  database, this function return url
+     * otherwise it returns null
+     *
+     * @param string $base_url url you want to check
+     * @param string $user_string code type by user
+     * @return null|string
+     */
     private function checkURL( $base_url, $user_string ){
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('MilaShortLinksBundle:UrlList');
@@ -146,6 +176,13 @@ class DefaultController extends Controller {
         }
     }
 
+    /**
+     * Method add to the database generated url and original address to the site
+     *
+     * @param string $orginal_url  url to site which you want to make shortlink
+     * @param string $generated_url generated url or url typed by user
+     * @param int $user_id identifier of user
+     */
     private function addURLToDB( $orginal_url, $generated_url, $user_id ){
         $url_list = new UrlList();
         $url_list->setOriginalUrl( $orginal_url );

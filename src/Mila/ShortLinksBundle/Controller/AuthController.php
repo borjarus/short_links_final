@@ -31,6 +31,13 @@ class AuthController extends Controller {
         return $this->redirect( $this->generateUrl("mila_short_links_homepage"));
     }
 
+    /**
+     * The method used to verify that the arguments given in login or password field
+     * are agreed with those that are stored in the database.
+     *
+     * @param string $login
+     * @param string $password
+     */
     private function checkUser( $login, $password ) {
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('MilaShortLinksBundle:User');
@@ -44,7 +51,11 @@ class AuthController extends Controller {
             $session->set('user_id', $user->getId() );
         }
     }
-
+    /**
+     * Method add user to database
+     *
+     * @param array $user_data this array contain username, password and email
+     */
     private function addUserToDB( $user_data ){
         $user_list = new User();
         $user_list->setUsername( $user_data['login'] );
