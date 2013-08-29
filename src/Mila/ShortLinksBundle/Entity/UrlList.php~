@@ -41,4 +41,106 @@ class UrlList {
      */
     protected $id_user;
 
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set original_url
+     *
+     * @param string $originalUrl
+     * @return UrlList
+     */
+    public function setOriginalUrl($originalUrl)
+    {
+        $this->original_url = $originalUrl;
+    
+        return $this;
+    }
+
+    /**
+     * Get original_url
+     *
+     * @return string 
+     */
+    public function getOriginalUrl()
+    {
+        return $this->original_url;
+    }
+
+    /**
+     * Set generated_url
+     *
+     * @param string $generatedUrl
+     * @return UrlList
+     */
+    public function setGeneratedUrl($generatedUrl)
+    {
+        $this->generated_url = $generatedUrl;
+    
+        return $this;
+    }
+
+    /**
+     * Get generated_url
+     *
+     * @return string 
+     */
+    public function getGeneratedUrl()
+    {
+        return $this->generated_url;
+    }
+
+    /**
+     * Set date_added
+     *
+     * @param \DateTime $dateAdded
+     * @return UrlList
+     */
+    public function setDateAdded($dateAdded)
+    {
+        $this->date_added = $dateAdded;
+    
+        return $this;
+    }
+
+    /**
+     * Get date_added
+     *
+     * @return \DateTime 
+     */
+    public function getDateAdded()
+    {
+        return $this->date_added;
+    }
+
+    /**
+     * Set id_user
+     *
+     * @param integer $idUser
+     * @return UrlList
+     */
+    public function setIdUser($idUser)
+    {
+        $this->id_user = $idUser;
+    
+        return $this;
+    }
+
+    /**
+     * Get id_user
+     *
+     * @return integer 
+     */
+    public function getIdUser()
+    {
+        return $this->id_user;
+    }
 }

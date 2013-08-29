@@ -1,0 +1,44 @@
+<?php
+ /**
+ * @access public
+ * @author Mirosław Puczyński <public.mila@gmail.com>
+ * @license http://www.example.com/license/licencja
+ * @version 1.0
+ */
+
+namespace Mila\ShortLinksBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="user")
+ */
+class User {
+
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    protected $username;
+    /**
+     * @ORM\Column(type="text")
+     */
+    protected $password;
+
+    /**
+     * @ORM\Column(type="date")
+     */
+    protected $date_added;
+    /**
+     * @ORM\Column(type="text")
+     */
+    protected $email;
+
+}
