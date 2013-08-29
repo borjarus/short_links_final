@@ -7,24 +7,36 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Mila\ShortLinksBundle\Entity\Product;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use \DateTime;
+use Symfony\Component\HttpFoundation\Session\Session;
 
-class DefaultController extends Controller
-{
-    public function indexAction( $args = null )
-    {
+class DefaultController extends Controller {
+    public function indexAction( $args = null ){
         $msg = array();
 
         if ( isset( $args ) ){
             $msg[] = $args[0];
         }
 
-        if ( $this->get('request')->getMethod() == 'POST' ){
-            $request = $this->get('request')->request->all();
+        $session = new Session();
+        $user = $session->get('login');
+        if ( isset( $user ) ){
+            $user = $session->get('login');
+            $user_id = $session->get('user_id');
+            $login_text = 'Zalogownano: '.$user.'
+            <a href="'.$this->get('router')->generate( 'mila_short_links_logout', array(), true ).'">Wyloguj</a>';
+        } else {
+            $user = '';
+            $user_id = 0;
+            $login_text = '';
+        }
+
+        $request = $this->get('request')->request->all();
+        if ( $this->get('request')->getMethod() == 'POST' && !empty( $request )  ){
+
             //clean request from default data
             if ( $request['url_address'] == 'wpisz tutaj adres url..' ) { $request['url_address'] = ''; }
             if ( $request['custom_url'] == 'wpisz tutaj własny tekst..' ) { $request['custom_url'] = ''; }
             $base_url = $this->get('router')->generate( 'mila_short_links_homepage', array(), true );
-            var_dump($request);
             if ( $request['custom_url'] == '' ){
                 if( $request['url_address'] != ''){
                     $url = $request['url_address'];
@@ -34,9 +46,14 @@ class DefaultController extends Controller
                     if ( $is_URL == null ){
                         // check the database if there is already specified generated string
                         $generated_url = $this->generateAndCheckURL( $base_url );
-                        $this->addURLToDB( $url, $generated_url, 1);
-                        $msg[] = '<p>Wygenerowany link to: <a href="'. $generated_url .'">
+                        if ( $user_id != 0 ){
+                            $this->addURLToDB( $url, $generated_url, $user_id);
+                            $msg[] = '<p>Wygenerowany link to: <a href="'. $generated_url .'">
                             '. $generated_url .'</a></p>';
+                        } else {
+                            $msg[] = '<p class="error">Musisz być zalogowany aby dodać shortlink</p>';
+                        }
+
                     } else {
                         $msg[] = '<p>Wygenerowany link to: <a href="'. $is_URL->getGeneratedUrl() .'">
                             '. $is_URL->getGeneratedUrl() .'</a></p>';
@@ -60,7 +77,8 @@ class DefaultController extends Controller
                 }
             }
         }
-        return $this->render( 'MilaShortLinksBundle:Default:index.html.twig', array( 'msg' => $msg ) );
+        return $this->render( 'MilaShortLinksBundle:Default:index.html.twig',
+            array( 'msg' => $msg, 'login_text' => $login_text ) );
     }
 
     public function redirectAction( $code ){

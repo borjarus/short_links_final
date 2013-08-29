@@ -59,6 +59,10 @@ body {
   padding: 25px;
 }
 
+.error {
+  color: #ff0000;
+}
+
 /* general form */
 fieldset {
   border: 0;
@@ -73,7 +77,7 @@ input[type="text"] {
 
 /* top navbar */
 #top_navbar ul {
-  width: 200px;
+  width: 330px;
   position: absolute;
   right: 0;
   top: 0;

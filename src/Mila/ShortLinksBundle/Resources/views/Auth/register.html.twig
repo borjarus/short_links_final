@@ -1,17 +1,18 @@
-<form action="" method="post">
+<form action="{{ url('mila_short_links_register') }}" id="register_form" method="post">
     <fieldset>
-        <label>username: </label><input type="text" name="username" />
+        <label>login: </label><input type="text" name="username" id="username" />
     </fieldset>
     <fieldset>
-        <label>hasło: </label><input type="text" name="password" />
+        <label>hasło: </label><input type="password" name="password" id="password" />
     </fieldset>
     <fieldset>
-        <label>powtórz hasło: </label><input type="text" name="retype_password" />
+        <label>powtórz hasło: </label><input type="password" name="retype_password" id="retype_password" />
     </fieldset>
     <fieldset>
-        <label>email: </label><input type="text" name="email" />
+        <label>email: </label><input type="email" name="email" id="email" />
     </fieldset>
+    <p class="error"></p>
     <fieldset>
-        <input type="submit" value="Zarejestruj się" />
+        <input type="submit" id="register_submit" value="Zarejestruj się" />
     </fieldset>
 </form>

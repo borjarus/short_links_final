@@ -6,8 +6,9 @@
 {% endif %}
 <nav id="top_navbar">
     <ul>
-        <li><a href="{{ url('mila_short_links_login') }}" data-id="login">Login</a></li>
-        <li><a href="{{ url('mila_short_links_register') }}" data-id="register">Register</a></li>
+        <li id="log_in">{{ login_text|raw }}</li>
+        <li><a href="{{ url('mila_short_links_login') }}" class="modal" data-id="login">Login</a></li>
+        <li><a href="{{ url('mila_short_links_register') }}" class="modal" data-id="register">Register</a></li>
     </ul>
 </nav>
 <form action="" method="post">
